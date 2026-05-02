@@ -53,7 +53,7 @@ export default function RegisterPage() {
         <form onSubmit={handleRegister} className="space-y-4">
           <input name="name" type="text" placeholder="Name" className="input input-bordered w-full" required />
           <input name="email" type="email" placeholder="Email" className="input input-bordered w-full" required />
-          <input name="image" type="url" placeholder="Photo URL" className="input input-bordered w-full" required />
+          <input name="image" type="url" placeholder="Photo URL" className="input input-bordered w-full" />
           <input name="password" type="password" placeholder="Password" className="input input-bordered w-full" required minLength={6} />
 
           <button disabled={loading} className="btn bg-orange-500 text-white w-full">
