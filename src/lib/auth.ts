@@ -3,19 +3,23 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { prisma } from "./prisma";
 
 export const auth = betterAuth({
-  // database: prismaAdapter(prisma, {
-  //   provider: "sqlite",
-  // }),
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://skillsphere-sable.vercel.app",
+  ],
+
   database: prismaAdapter(prisma, {
-  provider: "postgresql",
+    provider: "postgresql",
   }),
+
   emailAndPassword: {
     enabled: true,
   },
+
   socialProviders: {
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     },
   },
 });
