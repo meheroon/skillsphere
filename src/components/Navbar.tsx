@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { signOut, useSession } from "@/lib/auth-client";
+// import { signOut, useSession } from "better-auth/api";
+import { signOut, useSession } from "@/lib/auth-client"; 
 import toast from "react-hot-toast";
 
 export default function Navbar() {

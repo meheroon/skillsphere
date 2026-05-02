@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import AuthProvider from "@/components/AuthProvider";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import AuthProvider from "../components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "SkillSphere",
