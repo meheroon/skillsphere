@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import AuthProvider from "../components/AuthProvider";
+import ScrollButtons from "@/components/ScrollButtons";
 
 export const metadata: Metadata = {
   title: "SkillSphere",
@@ -19,6 +20,7 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
+           <ScrollButtons />
         </AuthProvider>
       </body>
     </html>
