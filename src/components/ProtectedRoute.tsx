@@ -11,13 +11,13 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
 
   useEffect(() => {
     if (!isPending && !session?.user) {
-      router.push(`/login?redirect=${pathname}`);
+      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
     }
   }, [isPending, session, router, pathname]);
 
   if (isPending) {
     return (
-      <div className="min-h-[60vh] flex justify-center items-center">
+      <div className="min-h-[70vh] flex justify-center items-center">
         <span className="loading loading-spinner loading-lg text-warning"></span>
       </div>
     );

@@ -38,9 +38,12 @@ function LoginForm() {
   };
 
   const handleGoogleLogin = async () => {
+  const redirectPath = searchParams.get("redirect") || "/";
+  const safeRedirect = redirectPath.startsWith("/") ? redirectPath : "/";
+
     await signIn.social({
       provider: "google",
-      callbackURL: "/",
+      callbackURL: safeRedirect,
     });
   };
 
