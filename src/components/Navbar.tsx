@@ -45,11 +45,11 @@ export default function Navbar() {
             <span className="loading loading-spinner loading-sm"></span>
           ) : session?.user ? (
             <>
-              <Link href="/my-profile">
+              <Link onClick={() => setOpen(false)} href="/my-profile">
                 <img
                   src={session.user.image || "https://i.pravatar.cc/150"}
                   alt="user"
-                  className="w-10 h-10 rounded-full object-cover border-2 border-orange-500"
+                   className="w-10 h-10 rounded-full object-cover border-2 border-orange-500 cursor-pointer hover:scale-105 transition"
                   onError={(e) => {
                     e.currentTarget.src = "https://i.pravatar.cc/150";
                   }}

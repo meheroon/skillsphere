@@ -1,16 +1,23 @@
 "use client";
 
-import { signIn } from "@/lib/auth-client";
+import { signIn ,useSession} from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, Suspense, useState } from "react";
+import { FormEvent, Suspense, useState,useEffect } from "react";
 import toast from "react-hot-toast";
 
 function LoginForm() {
   const router = useRouter();
+  const { data: session, isPending } = useSession();
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect") || "/";
   const [loading, setLoading] = useState(false);
+  
+    useEffect(() => {
+    if (!isPending && session?.user) {
+      router.push("/");
+    }
+  }, [isPending, session, router]);
 
   const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,6 +53,13 @@ function LoginForm() {
       callbackURL: safeRedirect,
     });
   };
+  if (isPending) {
+  return (
+      <div className="min-h-[70vh] flex items-center justify-center">
+        <span className="loading loading-spinner loading-lg text-warning"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-12">

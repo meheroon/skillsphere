@@ -1,14 +1,30 @@
 "use client";
 
-import { signIn, signUp } from "@/lib/auth-client";
+import { signIn, signUp,useSession } from "@/lib/auth-client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState,useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function RegisterPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  const { data: session, isPending } = useSession();
+
+    useEffect(() => {
+      if (!isPending && session?.user) {
+        router.push("/");
+      }
+    }, [isPending, session, router]);
+
+    if (isPending) {
+      return (
+        <div className="min-h-[70vh] flex items-center justify-center">
+          <span className="loading loading-spinner loading-lg text-warning"></span>
+        </div>
+      );
+    }
 
   const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
